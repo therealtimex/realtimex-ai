@@ -68,8 +68,8 @@ export function FloatingChat() {
             onChange={(e) => setMessage(e.target.value)}
             onFocus={handleFocus}
             onBlur={handleBlur}
-            placeholder="Ask ChatGPT"
-            aria-label="Message ChatGPT"
+            placeholder="Ask RealTime"
+            aria-label="Message RealTime"
             className={cn(
               "mx-3 w-full bg-transparent text-gray-700 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400",
               "text-sm focus:outline-none transition-all duration-300",
@@ -79,7 +79,7 @@ export function FloatingChat() {
           <button
             type="submit"
             disabled={!message.trim()}
-            aria-label="Send prompt to ChatGPT"
+            aria-label="Send prompt to RealTime"
             className={cn(
               "absolute right-2 top-2 h-8 w-8 flex-none rounded-full p-0 transition-all duration-200",
               "bg-gray-600 dark:bg-gray-500 text-white hover:opacity-70 disabled:hover:opacity-100",
