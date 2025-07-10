@@ -58,7 +58,7 @@ export function FloatingChat() {
         <label
           className={cn(
             "relative flex w-full rounded-3xl p-2 shadow-lg backdrop-blur-xl transition-all duration-400",
-            "bg-blue-600/90 dark:bg-blue-500/90 border border-blue-500/20 dark:border-blue-400/20",
+            "bg-gray-200/90 dark:bg-gray-700/90 border border-gray-300/20 dark:border-gray-600/20",
           )}
         >
           <input
@@ -71,7 +71,7 @@ export function FloatingChat() {
             placeholder="Ask ChatGPT"
             aria-label="Message ChatGPT"
             className={cn(
-              "mx-3 w-full bg-transparent text-white placeholder-blue-200 dark:placeholder-blue-300",
+              "mx-3 w-full bg-transparent text-gray-700 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400",
               "text-sm focus:outline-none transition-all duration-300",
               "h-8 flex items-center",
             )}
@@ -82,8 +82,8 @@ export function FloatingChat() {
             aria-label="Send prompt to ChatGPT"
             className={cn(
               "absolute right-2 top-2 h-8 w-8 flex-none rounded-full p-0 transition-all duration-200",
-              "bg-blue-500 dark:bg-blue-400 text-white hover:opacity-70 disabled:hover:opacity-100",
-              "disabled:bg-blue-400/50 dark:disabled:bg-blue-300/50 disabled:text-blue-200 dark:disabled:text-blue-100",
+              "bg-gray-600 dark:bg-gray-500 text-white hover:opacity-70 disabled:hover:opacity-100",
+              "disabled:bg-gray-400/50 dark:disabled:bg-gray-500/50 disabled:text-gray-300 dark:disabled:text-gray-400",
               "flex items-center justify-center",
             )}
           >
