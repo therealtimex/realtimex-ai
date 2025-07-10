@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Bot, Zap, ArrowRight, Cpu, MessageSquare, Sparkles, Users, Shield, Rocket } from "lucide-react"
-import { ThemeToggle } from "@/components/theme-toggle"
+import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
 import { FloatingChat } from "@/components/floating-chat"
@@ -10,28 +10,7 @@ import { FloatingChat } from "@/components/floating-chat"
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950">
-      {/* Navigation */}
-      <nav className="border-b border-gray-100 dark:border-gray-800 bg-white/80 dark:bg-gray-950/80 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-gray-900 dark:bg-white rounded-lg flex items-center justify-center">
-              <Bot className="w-5 h-5 text-white dark:text-gray-900" />
-            </div>
-            <span className="text-xl font-semibold text-gray-900 dark:text-white">RealTimeX</span>
-          </Link>
-
-          <div className="flex items-center space-x-2">
-            <ThemeToggle />
-            <Button
-              size="sm"
-              className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100 animate-pulse-glow"
-              asChild
-            >
-              <Link href="/download">Download</Link>
-            </Button>
-          </div>
-        </div>
-      </nav>
+      <Header />
 
       {/* Hero Section - Full Viewport Height */}
       <section className="min-h-[calc(100vh-4rem)] flex items-center justify-center bg-white dark:bg-gray-950">
