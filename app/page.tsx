@@ -70,7 +70,7 @@ export default function HomePage() {
               <Button
                 variant="outline"
                 size="lg"
-                className="px-8 py-3 text-lg border-gray-200 dark:border-gray-700 bg-transparent hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300 hover:scale-105"
+                className="px-8 py-3 text-lg bg-white dark:bg-white text-gray-900 dark:text-gray-900 border-gray-200 dark:border-gray-300 hover:bg-gray-50 dark:hover:bg-gray-100 transition-all duration-300 hover:scale-105"
               >
                 Schedule a Demo
               </Button>
@@ -78,8 +78,8 @@ export default function HomePage() {
           </div>
         </div>
         <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-[128px] opacity-20"></div>
-            <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-cyan-400 rounded-full mix-blend-multiply filter blur-[128px] opacity-20"></div>
+          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-[128px] opacity-20"></div>
+          <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-cyan-400 rounded-full mix-blend-multiply filter blur-[128px] opacity-20"></div>
         </div>
       </section>
 

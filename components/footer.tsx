@@ -48,7 +48,9 @@ export function Footer() {
             <ul className="space-y-3 text-sm">
               <li>
                 <Link
-                  href="/agents"
+                  href="https://marketplace.realtimex.ai/agents"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
                 >
                   AI Agents
@@ -56,15 +58,19 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/tools"
+                  href="https://marketplace.realtimex.ai/tools"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
                 >
-                  Smart Tools
+                  Tools
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/mcp"
+                  href="https://marketplace.realtimex.ai/mcp-servers"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
                 >
                   MCP Servers
@@ -72,10 +78,32 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/download"
+                  href="https://marketplace.realtimex.ai/agent-skills"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
                 >
-                  Download
+                  Agent Skills
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://marketplace.realtimex.ai/system-prompts"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                >
+                  System Prompts
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://marketplace.realtimex.ai/slash-commands"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                >
+                  Slash Commands
                 </Link>
               </li>
             </ul>
