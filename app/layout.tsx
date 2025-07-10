@@ -7,8 +7,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "RealtimeX - The Future of AI Collaboration",
-  description: "Create, share, and discover powerful AI agents for RealtimeX",
+  title: "RealTimeX - The Future of AI Collaboration",
+  description: "Create, share, and discover powerful AI agents for RealTimeX",
     generator: 'v0.dev'
 }
 
