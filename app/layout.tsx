@@ -9,7 +9,10 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "RealTimeX - The Future of AI Collaboration",
   description: "Create, share, and discover powerful AI agents for RealTimeX",
-    generator: 'v0.dev'
+  generator: 'v0.dev',
+  icons: {
+    icon: "/logo/favicon.ico",
+  },
 }
 
 export default function RootLayout({
