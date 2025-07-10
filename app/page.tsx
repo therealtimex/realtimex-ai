@@ -24,7 +24,7 @@ export default function HomePage() {
             <ThemeToggle />
             <Button
               size="sm"
-              className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100"
+              className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100 animate-pulse-glow"
               asChild
             >
               <Link href="/download">Download</Link>
@@ -33,41 +33,44 @@ export default function HomePage() {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="py-24 md:py-32 bg-white dark:bg-gray-950">
+      {/* Hero Section - Full Viewport Height */}
+      <section className="min-h-[calc(100vh-4rem)] flex items-center justify-center bg-white dark:bg-gray-950">
         <div className="container mx-auto px-6">
           <div className="text-center max-w-4xl mx-auto">
             <Badge
               variant="secondary"
-              className="mb-8 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-0"
+              className="mb-8 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-0 animate-fade-in"
             >
               <Sparkles className="w-3 h-3 mr-2" />
               The Future of AI Collaboration
             </Badge>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 text-gray-900 dark:text-white leading-tight">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 text-gray-900 dark:text-white leading-tight animate-slide-up">
               Find powerful <span className="text-blue-600 dark:text-blue-400">AI Agents</span> for RealtimeX
             </h1>
 
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed animate-slide-up animation-delay-200">
               Create, share, and discover new Agents, tools and more to make RealtimeX the only AI tool you need.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 animate-slide-up animation-delay-400">
               <Button
                 size="lg"
-                className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100 px-8 py-3 text-lg"
+                className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100 px-8 py-3 text-lg group relative overflow-hidden animate-pulse-glow hover:animate-bounce-subtle transition-all duration-300 hover:scale-105 hover:shadow-lg"
                 asChild
               >
                 <Link href="/download">
-                  Download
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                  <span className="relative z-10 flex items-center">
+                    Download
+                    <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-gray-800 to-gray-900 dark:from-gray-100 dark:to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </Link>
               </Button>
               <Button
                 variant="outline"
                 size="lg"
-                className="px-8 py-3 text-lg border-gray-200 dark:border-gray-700 bg-transparent"
+                className="px-8 py-3 text-lg border-gray-200 dark:border-gray-700 bg-transparent hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300 hover:scale-105"
               >
                 Schedule a Demo
               </Button>
