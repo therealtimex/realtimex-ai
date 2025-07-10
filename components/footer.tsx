@@ -1,5 +1,6 @@
-import { Bot, Github, Linkedin, Twitter } from "lucide-react"
+import { Github, Linkedin, Twitter } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 export function Footer() {
   return (
@@ -9,9 +10,7 @@ export function Footer() {
           {/* Brand Column */}
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center space-x-3 mb-4">
-              <div className="w-8 h-8 bg-gray-900 dark:bg-white rounded-lg flex items-center justify-center">
-                <Bot className="w-5 h-5 text-white dark:text-gray-900" />
-              </div>
+              <Image src="/logo/logo.png" alt="RealTimeX Logo" width={32} height={32} />
               <span className="text-xl font-semibold text-gray-900 dark:text-white">RealTimeX</span>
             </Link>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 max-w-xs">
