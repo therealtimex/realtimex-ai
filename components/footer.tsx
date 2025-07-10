@@ -12,7 +12,7 @@ export function Footer() {
               <div className="w-8 h-8 bg-gray-900 dark:bg-white rounded-lg flex items-center justify-center">
                 <Bot className="w-5 h-5 text-white dark:text-gray-900" />
               </div>
-              <span className="text-xl font-semibold text-gray-900 dark:text-white">RealtimeX</span>
+              <span className="text-xl font-semibold text-gray-900 dark:text-white">RealTimeX</span>
             </Link>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 max-w-xs">
               The future of AI collaboration. Create, share, and discover powerful AI agents.
@@ -123,7 +123,7 @@ export function Footer() {
         {/* Bottom Section */}
         <div className="pt-8 border-t border-gray-100 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 md:mb-0">
-            &copy; 2025 RealtimeX. All rights reserved.
+            &copy; 2025 RealTimeX. All rights reserved.
           </p>
         </div>
       </div>
