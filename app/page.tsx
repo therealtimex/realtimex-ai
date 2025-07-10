@@ -17,7 +17,7 @@ export default function HomePage() {
             <div className="w-8 h-8 bg-gray-900 dark:bg-white rounded-lg flex items-center justify-center">
               <Bot className="w-5 h-5 text-white dark:text-gray-900" />
             </div>
-            <span className="text-xl font-semibold text-gray-900 dark:text-white">RealtimeX</span>
+            <span className="text-xl font-semibold text-gray-900 dark:text-white">RealTimeX</span>
           </Link>
 
           <div className="flex items-center space-x-2">
@@ -46,11 +46,11 @@ export default function HomePage() {
             </Badge>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 text-gray-900 dark:text-white leading-tight animate-slide-up">
-              Find powerful <span className="text-blue-600 dark:text-blue-400">AI Agents</span> for RealtimeX
+              Find powerful <span className="text-blue-600 dark:text-blue-400">AI Agents</span> for RealTimeX
             </h1>
 
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed animate-slide-up animation-delay-200">
-              Create, share, and discover new Agents, tools and more to make RealtimeX the only AI tool you need.
+              Create, share, and discover new Agents, tools and more to make RealTimeX the only AI tool you need.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 animate-slide-up animation-delay-400">
@@ -212,7 +212,7 @@ export default function HomePage() {
             Ready to supercharge your AI workflow?
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-            Join thousands of developers and teams who are already building the future with RealtimeX.
+            Join thousands of developers and teams who are already building the future with RealTimeX.
           </p>
           <Button
             size="lg"
