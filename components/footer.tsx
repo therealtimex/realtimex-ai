@@ -81,79 +81,39 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Resources Column */}
+          {/* Contact Column */}
           <div>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Resources</h3>
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Contact</h3>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link
-                  href="/docs"
+                <a
+                  href="mailto:hello@realtimex.ai"
                   className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
                 >
-                  Documentation
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/guides"
-                  className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-                >
-                  Guides
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/api"
-                  className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-                >
-                  API Reference
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/support"
-                  className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-                >
-                  Support
-                </Link>
+                  hello@realtimex.ai
+                </a>
               </li>
             </ul>
           </div>
 
-          {/* Company Column */}
+          {/* Legal Column */}
           <div>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Company</h3>
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Legal</h3>
             <ul className="space-y-3 text-sm">
               <li>
                 <Link
-                  href="/about"
+                  href="/terms"
                   className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
                 >
-                  About
+                  Terms of Service
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/blog"
+                  href="/privacy"
                   className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
                 >
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/careers"
-                  className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-                >
-                  Careers
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-                >
-                  Contact
+                  Privacy Policy
                 </Link>
               </li>
             </ul>
@@ -165,14 +125,6 @@ export function Footer() {
           <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 md:mb-0">
             &copy; 2025 RealtimeX. All rights reserved.
           </p>
-          <div className="flex items-center space-x-6 text-sm text-gray-500 dark:text-gray-400">
-            <Link href="/privacy" className="hover:text-gray-900 dark:hover:text-white transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="hover:text-gray-900 dark:hover:text-white transition-colors">
-              Terms of Service
-            </Link>
-          </div>
         </div>
       </div>
     </footer>

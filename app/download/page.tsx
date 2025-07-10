@@ -3,12 +3,19 @@
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
-import { Bot, Download, Apple, Monitor, Shield, Zap, HardDrive, Cpu, Lock, CheckCircle, Rocket } from "lucide-react"
+import { Bot, Download, Monitor, Shield, Zap, Lock } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
 import { useState } from "react"
 import { FloatingChat } from "@/components/floating-chat"
+
+// Apple SVG Icon Component
+const AppleIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+  </svg>
+)
 
 export default function DownloadPage() {
   const [selectedPlatform, setSelectedPlatform] = useState("mac")
@@ -17,7 +24,7 @@ export default function DownloadPage() {
     {
       id: "mac",
       name: "macOS",
-      icon: Apple,
+      icon: AppleIcon,
     },
     {
       id: "windows",
@@ -86,7 +93,7 @@ export default function DownloadPage() {
                         : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
                     }`}
                   >
-                    <platform.icon className="w-5 h-5 mr-3" />
+                    <platform.icon className="w-5 h-5" />
                     <span className="font-medium">{platform.name}</span>
                   </button>
                 ))}
@@ -96,12 +103,12 @@ export default function DownloadPage() {
             {/* Download Buttons */}
             <div className="space-y-6 mb-12">
               {selectedPlatform === "mac" && (
-                <div className="space-y-4">
+                <div className="flex flex-col items-center space-y-4">
                   <Button
                     size="lg"
                     className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100 px-12 py-4 text-lg w-full max-w-sm"
                   >
-                    <Apple className="w-5 h-5 mr-3" />
+                    <AppleIcon className="w-5 h-5 mr-3" />
                     Download for Apple Silicon
                   </Button>
                   <Button
@@ -109,7 +116,7 @@ export default function DownloadPage() {
                     size="lg"
                     className="px-12 py-4 text-lg w-full max-w-sm border-gray-200 dark:border-gray-700 bg-transparent"
                   >
-                    <Apple className="w-5 h-5 mr-3" />
+                    <AppleIcon className="w-5 h-5 mr-3" />
                     Download for Intel Mac
                   </Button>
                 </div>
@@ -129,156 +136,50 @@ export default function DownloadPage() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-24 bg-gray-50 dark:bg-gray-900/50">
+      {/* Simplified Desktop Features Section */}
+      <section className="py-20 bg-gray-50 dark:bg-gray-900/50">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <Badge
-              variant="secondary"
-              className="mb-4 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 border-0"
-            >
-              Desktop Features
-            </Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
-              Unleash the full power of AI
+              Why choose the desktop app?
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Experience unparalleled performance and security with our native desktop application
+              Get the best RealtimeX experience with enhanced performance, privacy, and features.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {[
               {
                 icon: Lock,
                 title: "Complete Privacy",
-                description: "All processing happens locally. Your data never leaves your device.",
-                features: ["Local processing", "Zero data collection", "End-to-end encryption"],
+                description: "Everything runs locally on your device. Your data stays private and secure.",
               },
               {
                 icon: Zap,
-                title: "Lightning Performance",
-                description: "Optimized for speed with native desktop integration and GPU acceleration.",
-                features: ["GPU acceleration", "Native performance", "Smart caching"],
-              },
-              {
-                icon: HardDrive,
-                title: "Offline Capable",
-                description: "Work without internet. All AI models and tools available offline.",
-                features: ["Offline models", "Local storage", "No internet required"],
-              },
-              {
-                icon: Cpu,
-                title: "Hardware Optimized",
-                description: "Automatically detects and utilizes your hardware for maximum performance.",
-                features: ["Auto hardware detection", "Multi-core support", "Memory optimization"],
-              },
-              {
-                icon: Bot,
-                title: "Built-in Agent Library",
-                description: "Access hundreds of pre-built AI agents and tools right out of the box.",
-                features: ["500+ agents", "One-click deploy", "Regular updates"],
+                title: "Lightning Fast",
+                description: "Native performance with GPU acceleration for the smoothest AI experience.",
               },
               {
                 icon: Shield,
-                title: "Enterprise Security",
-                description: "Advanced security features and compliance tools for business environments.",
-                features: ["Audit logs", "Compliance tools", "Role-based access"],
+                title: "Always Available",
+                description: "Work offline with built-in AI models. No internet connection required.",
               },
             ].map((feature, index) => (
               <Card
                 key={index}
-                className="border-0 shadow-sm hover:shadow-md transition-shadow bg-white dark:bg-gray-900"
+                className="group border-0 shadow-sm hover:shadow-lg transition-all duration-300 bg-white dark:bg-gray-900 text-center"
               >
                 <CardContent className="p-8">
-                  <div className="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center mb-6">
-                    <feature.icon className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <feature.icon className="w-8 h-8 text-blue-600 dark:text-blue-400" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">{feature.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">{feature.description}</p>
-                  <div className="space-y-2">
-                    {feature.features.map((item, i) => (
-                      <div key={i} className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                        <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
-                        {item}
-                      </div>
-                    ))}
-                  </div>
+                  <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">{feature.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{feature.description}</p>
                 </CardContent>
               </Card>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* System Requirements */}
-      <section className="py-24">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">System Requirements</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300">Optimized to run on modern hardware</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-            {[
-              {
-                platform: "macOS",
-                icon: Apple,
-                requirements: [
-                  "macOS 12.0 or later",
-                  "8GB RAM (16GB recommended)",
-                  "4GB free disk space",
-                  "Apple Silicon or Intel processor",
-                ],
-              },
-              {
-                platform: "Windows",
-                icon: Monitor,
-                requirements: [
-                  "Windows 10 (64-bit) or later",
-                  "8GB RAM (16GB recommended)",
-                  "4GB free disk space",
-                  "x64 processor with SSE4.2",
-                ],
-              },
-            ].map((platform, index) => (
-              <Card key={index} className="border-0 shadow-sm bg-white dark:bg-gray-900">
-                <CardContent className="p-8 text-center">
-                  <div className="w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center mx-auto mb-6">
-                    <platform.icon className="w-6 h-6 text-gray-700 dark:text-gray-300" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-6 text-gray-900 dark:text-white">{platform.platform}</h3>
-                  <ul className="space-y-3 text-left">
-                    {platform.requirements.map((req, i) => (
-                      <li key={i} className="flex items-center text-gray-600 dark:text-gray-300">
-                        <CheckCircle className="w-4 h-4 mr-3 text-green-500 flex-shrink-0" />
-                        {req}
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
-            Ready to experience the future of AI?
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-            Download RealtimeX today and join thousands of users building with AI agents locally and privately.
-          </p>
-          <Button
-            size="lg"
-            className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100 px-12 py-4 text-lg"
-          >
-            <Rocket className="w-5 h-5 mr-2" />
-            Get Started
-          </Button>
         </div>
       </section>
 
