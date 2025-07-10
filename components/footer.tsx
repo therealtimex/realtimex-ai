@@ -19,7 +19,7 @@ export function Footer() {
             </p>
             <div className="flex items-center space-x-4">
               <Link
-                href="https://github.com"
+                href="https://github.com/therealtimex"
                 className="w-9 h-9 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
                 aria-label="GitHub"
               >
