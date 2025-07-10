@@ -42,7 +42,7 @@ export default function DownloadPage() {
             <div className="w-8 h-8 bg-gray-900 dark:bg-white rounded-lg flex items-center justify-center">
               <Bot className="w-5 h-5 text-white dark:text-gray-900" />
             </div>
-            <span className="text-xl font-semibold text-gray-900 dark:text-white">RealtimeX</span>
+            <span className="text-xl font-semibold text-gray-900 dark:text-white">RealTimeX</span>
           </Link>
 
           <div className="flex items-center space-x-2">
@@ -144,7 +144,7 @@ export default function DownloadPage() {
               Why choose the desktop app?
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Get the best RealtimeX experience with enhanced performance, privacy, and features.
+              Get the best RealTimeX experience with enhanced performance, privacy, and features.
             </p>
           </div>
 
