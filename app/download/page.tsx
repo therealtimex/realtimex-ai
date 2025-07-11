@@ -4,10 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Download, Monitor, Shield, Zap, Lock } from "lucide-react"
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
 import { useState, useEffect } from "react"
-import { FloatingChat } from "@/components/floating-chat"
 
 // Apple SVG Icon Component
 const AppleIcon = ({ className }: { className?: string }) => (
@@ -48,9 +45,7 @@ export default function DownloadPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-950">
-      <Header />
-
+    <>
       {/* Hero Section */}
       <section className="py-24 md:py-32">
         <div className="container mx-auto px-6">
@@ -187,9 +182,6 @@ export default function DownloadPage() {
           </div>
         </div>
       </section>
-
-      <Footer />
-      <FloatingChat />
-    </div>
+    </>
   )
 }

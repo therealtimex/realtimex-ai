@@ -2,16 +2,11 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Bot, Zap, ArrowRight, Cpu, MessageSquare, Sparkles, Users, Shield, Rocket } from "lucide-react"
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
 import Link from "next/link"
-import { FloatingChat } from "@/components/floating-chat"
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-950">
-      <Header />
-
+    <>
       {/* Hero Section - Full Viewport Height */}
       <section className="min-h-[calc(100vh-4rem)] flex items-center justify-center bg-white dark:bg-gray-950">
         <div className="container mx-auto px-6">
@@ -201,9 +196,6 @@ export default function HomePage() {
           </Button>
         </div>
       </section>
-
-      <Footer />
-      <FloatingChat />
-    </div>
+    </>
   )
 }
