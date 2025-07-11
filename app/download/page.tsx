@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Download, Monitor, Shield, Zap, Lock } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { FloatingChat } from "@/components/floating-chat"
 
 // Apple SVG Icon Component
@@ -17,7 +17,22 @@ const AppleIcon = ({ className }: { className?: string }) => (
 )
 
 export default function DownloadPage() {
-  const [selectedPlatform, setSelectedPlatform] = useState("mac")
+  const [selectedPlatform, setSelectedPlatform] = useState<string | null>(null)
+
+  // Auto-detect user's platform
+  useEffect(() => {
+    const detectPlatform = () => {
+      const userAgent = navigator.userAgent.toLowerCase()
+      if (userAgent.includes("mac")) {
+        return "mac"
+      } else if (userAgent.includes("win")) {
+        return "windows"
+      }
+      return "windows" // Default to Windows if detection fails
+    }
+
+    setSelectedPlatform(detectPlatform())
+  }, [])
 
   const platforms = [
     {
@@ -58,58 +73,68 @@ export default function DownloadPage() {
               No complex setup required.
             </p>
 
-            {/* Platform Selector */}
-            <div className="flex justify-center mb-12">
-              <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-1 inline-flex">
-                {platforms.map((platform) => (
-                  <button
-                    key={platform.id}
-                    onClick={() => setSelectedPlatform(platform.id)}
-                    className={`flex items-center space-x-2 px-6 py-3 rounded-md transition-all ${
-                      selectedPlatform === platform.id
-                        ? "bg-white dark:bg-dark-purple text-gray-900 dark:text-white shadow-sm"
-                        : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-dark-purple/20"
-                    }`}
-                  >
-                    <platform.icon className="w-5 h-5" />
-                    <span className="font-medium">{platform.name}</span>
-                  </button>
-                ))}
-              </div>
+            {/* Platform Selector - Larger Size */}
+            <div className="flex justify-center items-center space-x-12 mb-12">
+              {platforms.map((platform) => (
+                <button
+                  key={platform.id}
+                  onClick={() => setSelectedPlatform(platform.id)}
+                  className={`flex flex-col items-center space-y-4 px-12 py-8 rounded-xl transition-all min-w-[180px] min-h-[140px] border-2 ${
+                    selectedPlatform === platform.id
+                      ? "bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-dark-purple text-gray-900 dark:text-white shadow-lg"
+                      : "border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-900 dark:hover:text-white"
+                  }`}
+                >
+                  <platform.icon className="w-16 h-16" />
+                  <span className="font-medium text-lg">{platform.name}</span>
+                </button>
+              ))}
             </div>
 
-            {/* Download Buttons */}
+            {/* Download Buttons - No Icons */}
             <div className="space-y-6 mb-12">
               {selectedPlatform === "mac" && (
                 <div className="flex flex-col items-center space-y-4">
                   <Button
                     variant="outline"
                     size="lg"
-                    className="px-12 py-4 text-lg w-full max-w-sm border-gray-200 dark:border-dark-purple bg-transparent text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-dark-purple/10"
+                    className="px-12 py-4 text-lg w-full max-w-sm h-14 border-gray-200 dark:border-dark-purple bg-transparent text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-dark-purple/10"
                   >
-                    <AppleIcon className="w-5 h-5 mr-3" />
                     Download for Apple Silicon
                   </Button>
                   <Button
                     variant="outline"
                     size="lg"
-                    className="px-12 py-4 text-lg w-full max-w-sm border-gray-200 dark:border-dark-purple bg-transparent text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-dark-purple/10"
+                    className="px-12 py-4 text-lg w-full max-w-sm h-14 border-gray-200 dark:border-dark-purple bg-transparent text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-dark-purple/10"
                   >
-                    <AppleIcon className="w-5 h-5 mr-3" />
                     Download for Intel Mac
                   </Button>
                 </div>
               )}
 
               {selectedPlatform === "windows" && (
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="px-12 py-4 text-lg w-full max-w-sm border-gray-200 dark:border-dark-purple bg-transparent text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-dark-purple/10"
-                >
-                  <Monitor className="w-5 h-5 mr-3" />
-                  Download for Windows
-                </Button>
+                <div className="flex flex-col items-center space-y-4">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="px-12 py-4 text-lg w-full max-w-sm h-14 border-gray-200 dark:border-dark-purple bg-transparent text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-dark-purple/10"
+                  >
+                    Download for Windows x64
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="px-12 py-4 text-lg w-full max-w-sm h-14 border-gray-200 dark:border-dark-purple bg-transparent text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-dark-purple/10"
+                  >
+                    Download for Windows AMD64
+                  </Button>
+                </div>
+              )}
+
+              {!selectedPlatform && (
+                <p className="text-gray-500 dark:text-gray-400 text-lg">
+                  Select a platform above to see download options
+                </p>
               )}
             </div>
           </div>
