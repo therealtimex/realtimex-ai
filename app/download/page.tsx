@@ -10,6 +10,7 @@ import { Footer } from "@/components/footer"
 import { useState, useEffect } from "react"
 import { useTheme } from "next-themes"
 import { FloatingChat } from "@/components/floating-chat"
+import { downloadLinks } from "@/config/download-links"
 
 export default function DownloadPage() {
   const [selectedPlatform, setSelectedPlatform] = useState<string | null>(null)
@@ -98,41 +99,21 @@ export default function DownloadPage() {
 
             {/* Download Buttons - No Icons */}
             <div className="space-y-6 mb-12">
-              {selectedPlatform === "mac" && (
+              {selectedPlatform && downloadLinks[selectedPlatform as keyof typeof downloadLinks] && (
                 <div className="flex flex-col items-center space-y-4">
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="px-12 py-4 text-lg w-full max-w-sm h-14 border-gray-200 dark:border-dark-purple bg-transparent text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-dark-purple/10"
-                  >
-                    Download for Apple Silicon
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="px-12 py-4 text-lg w-full max-w-sm h-14 border-gray-200 dark:border-dark-purple bg-transparent text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-dark-purple/10"
-                  >
-                    Download for Intel Mac
-                  </Button>
-                </div>
-              )}
-
-              {selectedPlatform === "windows" && (
-                <div className="flex flex-col items-center space-y-4">
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="px-12 py-4 text-lg w-full max-w-sm h-14 border-gray-200 dark:border-dark-purple bg-transparent text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-dark-purple/10"
-                  >
-                    Download for Windows x64
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="px-12 py-4 text-lg w-full max-w-sm h-14 border-gray-200 dark:border-dark-purple bg-transparent text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-dark-purple/10"
-                  >
-                    Download for Windows AMD64
-                  </Button>
+                  {downloadLinks[selectedPlatform as keyof typeof downloadLinks]
+                    .filter(link => link.enabled)
+                    .map((link) => (
+                      <Button
+                        key={link.id}
+                        variant="outline"
+                        size="lg"
+                        className="px-12 py-4 text-lg w-full max-w-sm h-14 border-gray-200 dark:border-dark-purple bg-transparent text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-dark-purple/10"
+                        onClick={() => window.open(link.url, '_blank')}
+                      >
+                        {link.label}
+                      </Button>
+                    ))}
                 </div>
               )}
 
