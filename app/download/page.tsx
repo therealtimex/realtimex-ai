@@ -10,12 +10,47 @@ import { Footer } from "@/components/footer"
 import { useState, useEffect } from "react"
 import { useTheme } from "next-themes"
 import { FloatingChat } from "@/components/floating-chat"
-import { downloadLinks } from "@/config/download-links"
+
+interface DownloadLink {
+  id: string
+  label: string
+  url: string
+  enabled: boolean
+}
+
+interface PlatformDownloads {
+  mac: DownloadLink[]
+  windows: DownloadLink[]
+}
+
+interface DownloadData {
+  version: string
+  downloadLinks: PlatformDownloads
+}
 
 export default function DownloadPage() {
   const [selectedPlatform, setSelectedPlatform] = useState<string | null>(null)
+  const [downloadData, setDownloadData] = useState<DownloadData | null>(null)
+  const [loading, setLoading] = useState(true)
   const { theme, resolvedTheme } = useTheme()
   const currentTheme = theme === "system" ? resolvedTheme : theme
+
+  // Fetch download links from API
+  useEffect(() => {
+    const fetchDownloadLinks = async () => {
+      try {
+        const response = await fetch('/api/download-links')
+        const data = await response.json()
+        setDownloadData(data)
+      } catch (error) {
+        console.error('Failed to fetch download links:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchDownloadLinks()
+  }, [])
 
   // Auto-detect user's platform
   useEffect(() => {
@@ -66,7 +101,7 @@ export default function DownloadPage() {
               className="mb-8 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 border-0"
             >
               <Download className="w-3 h-3 mr-2" />
-              Desktop v2.1.0
+              Desktop {downloadData?.version || 'v2.1.0'}
             </Badge>
 
             <h1 className="text-5xl md:text-6xl font-bold mb-8 text-gray-900 dark:text-white leading-tight">
@@ -99,9 +134,15 @@ export default function DownloadPage() {
 
             {/* Download Buttons - No Icons */}
             <div className="space-y-6 mb-12">
-              {selectedPlatform && downloadLinks[selectedPlatform as keyof typeof downloadLinks] && (
+              {loading && (
+                <p className="text-gray-500 dark:text-gray-400 text-lg">
+                  Loading download options...
+                </p>
+              )}
+
+              {!loading && selectedPlatform && downloadData?.downloadLinks[selectedPlatform as keyof PlatformDownloads] && (
                 <div className="flex flex-col items-center space-y-4">
-                  {downloadLinks[selectedPlatform as keyof typeof downloadLinks]
+                  {downloadData.downloadLinks[selectedPlatform as keyof PlatformDownloads]
                     .filter(link => link.enabled)
                     .map((link) => (
                       <Button
@@ -117,9 +158,15 @@ export default function DownloadPage() {
                 </div>
               )}
 
-              {!selectedPlatform && (
+              {!loading && !selectedPlatform && (
                 <p className="text-gray-500 dark:text-gray-400 text-lg">
                   Select a platform above to see download options
+                </p>
+              )}
+
+              {!loading && selectedPlatform && downloadData?.downloadLinks[selectedPlatform as keyof PlatformDownloads]?.filter(link => link.enabled).length === 0 && (
+                <p className="text-gray-500 dark:text-gray-400 text-lg">
+                  No downloads available for this platform
                 </p>
               )}
             </div>
