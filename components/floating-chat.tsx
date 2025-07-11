@@ -74,6 +74,8 @@ export function FloatingChat() {
               "mx-3 w-full bg-transparent text-gray-700 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400",
               "text-sm focus:outline-none transition-all duration-300",
               "h-8 flex items-center",
+              "focus:outline-none focus:ring-0 focus:border-0 border-0 outline-none",
+              "active:outline-none active:ring-0 active:border-0",
             )}
           />
           <button
