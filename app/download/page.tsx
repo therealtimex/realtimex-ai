@@ -26,29 +26,56 @@ interface PlatformDownloads {
 interface DownloadData {
   version: string
   downloadLinks: PlatformDownloads
+  cached?: boolean
+}
+
+interface ErrorData {
+  error: string
+  message: string
+  retryAfter?: string
 }
 
 export default function DownloadPage() {
   const [selectedPlatform, setSelectedPlatform] = useState<string | null>(null)
   const [downloadData, setDownloadData] = useState<DownloadData | null>(null)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<ErrorData | null>(null)
+  const [retryCount, setRetryCount] = useState(0)
   const { theme, resolvedTheme } = useTheme()
   const currentTheme = theme === "system" ? resolvedTheme : theme
 
   // Fetch download links from API
-  useEffect(() => {
-    const fetchDownloadLinks = async () => {
-      try {
-        const response = await fetch('/api/download-links')
-        const data = await response.json()
-        setDownloadData(data)
-      } catch (error) {
-        console.error('Failed to fetch download links:', error)
-      } finally {
-        setLoading(false)
+  const fetchDownloadLinks = async () => {
+    try {
+      setLoading(true)
+      setError(null)
+      
+      const response = await fetch('/api/download-links')
+      const data = await response.json()
+      
+      if (!response.ok) {
+        setError(data)
+        return
       }
+      
+      setDownloadData(data)
+    } catch (error) {
+      console.error('Failed to fetch download links:', error)
+      setError({
+        error: 'network_error',
+        message: 'Network error occurred. Please check your connection and try again.'
+      })
+    } finally {
+      setLoading(false)
     }
+  }
 
+  const handleRetry = () => {
+    setRetryCount(prev => prev + 1)
+    fetchDownloadLinks()
+  }
+
+  useEffect(() => {
     fetchDownloadLinks()
   }, [])
 
@@ -140,8 +167,38 @@ export default function DownloadPage() {
                 </p>
               )}
 
-              {!loading && selectedPlatform && downloadData?.downloadLinks[selectedPlatform as keyof PlatformDownloads] && (
+              {error && (
+                <div className="flex flex-col items-center space-y-4 max-w-md mx-auto">
+                  <div className="text-center p-6 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                    <h3 className="text-lg font-semibold text-red-800 dark:text-red-200 mb-2">
+                      {error.error === 'rate_limit' ? 'Too Many Requests' : 'Unable to Load Downloads'}
+                    </h3>
+                    <p className="text-red-600 dark:text-red-300 mb-4">
+                      {error.message}
+                    </p>
+                    {error.error === 'rate_limit' && error.retryAfter && (
+                      <p className="text-sm text-red-500 dark:text-red-400 mb-4">
+                        Please wait {error.retryAfter} seconds before trying again.
+                      </p>
+                    )}
+                    <Button
+                      onClick={handleRetry}
+                      variant="outline"
+                      className="border-red-300 dark:border-red-700 text-red-700 dark:text-red-300 hover:bg-red-50 dark:hover:bg-red-900/30"
+                    >
+                      Try Again
+                    </Button>
+                  </div>
+                </div>
+              )}
+
+              {!loading && !error && selectedPlatform && downloadData?.downloadLinks[selectedPlatform as keyof PlatformDownloads] && (
                 <div className="flex flex-col items-center space-y-4">
+                  {downloadData.cached && (
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
+                      Showing cached version
+                    </p>
+                  )}
                   {downloadData.downloadLinks[selectedPlatform as keyof PlatformDownloads]
                     .filter(link => link.enabled)
                     .map((link) => (
@@ -158,13 +215,13 @@ export default function DownloadPage() {
                 </div>
               )}
 
-              {!loading && !selectedPlatform && (
+              {!loading && !error && !selectedPlatform && (
                 <p className="text-gray-500 dark:text-gray-400 text-lg">
                   Select a platform above to see download options
                 </p>
               )}
 
-              {!loading && selectedPlatform && downloadData?.downloadLinks[selectedPlatform as keyof PlatformDownloads]?.filter(link => link.enabled).length === 0 && (
+              {!loading && !error && selectedPlatform && downloadData?.downloadLinks[selectedPlatform as keyof PlatformDownloads]?.filter(link => link.enabled).length === 0 && (
                 <p className="text-gray-500 dark:text-gray-400 text-lg">
                   Downloads for this platform will be available soon
                 </p>

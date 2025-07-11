@@ -26,20 +26,70 @@ interface PlatformDownloads {
   windows: DownloadLink[]
 }
 
+interface CachedData {
+  version: string
+  downloadLinks: PlatformDownloads
+  timestamp: number
+}
+
+// In-memory cache (in production, consider using Redis or similar)
+let cache: CachedData | null = null
+const CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
+
 export async function GET() {
   try {
+    // Check cache first
+    if (cache && Date.now() - cache.timestamp < CACHE_DURATION) {
+      return NextResponse.json({
+        version: cache.version,
+        downloadLinks: cache.downloadLinks,
+        cached: true
+      })
+    }
+
     // Fetch latest release
-    const releaseResponse = await fetch('https://api.github.com/repos/therealtimex/realtimex/releases/latest')
+    const releaseResponse = await fetch('https://api.github.com/repos/therealtimex/realtimex/releases/latest', {
+      headers: {
+        'User-Agent': 'RealTimeX-Download-Service'
+      }
+    })
+    
     if (!releaseResponse.ok) {
-      throw new Error('Failed to fetch latest release')
+      const errorData = {
+        status: releaseResponse.status,
+        statusText: releaseResponse.statusText
+      }
+      
+      if (releaseResponse.status === 429) {
+        return NextResponse.json({
+          error: 'rate_limit',
+          message: 'GitHub API rate limit exceeded. Please try again in a few minutes.',
+          retryAfter: releaseResponse.headers.get('retry-after') || '60'
+        }, { status: 429 })
+      }
+      
+      throw new Error(`GitHub API error: ${releaseResponse.status} ${releaseResponse.statusText}`)
     }
     
     const release: GitHubRelease = await releaseResponse.json()
     
     // Fetch assets for the latest release
-    const assetsResponse = await fetch(`https://api.github.com/repos/therealtimex/realtimex/releases/${release.id}/assets`)
+    const assetsResponse = await fetch(`https://api.github.com/repos/therealtimex/realtimex/releases/${release.id}/assets`, {
+      headers: {
+        'User-Agent': 'RealTimeX-Download-Service'
+      }
+    })
+    
     if (!assetsResponse.ok) {
-      throw new Error('Failed to fetch release assets')
+      if (assetsResponse.status === 429) {
+        return NextResponse.json({
+          error: 'rate_limit',
+          message: 'GitHub API rate limit exceeded. Please try again in a few minutes.',
+          retryAfter: assetsResponse.headers.get('retry-after') || '60'
+        }, { status: 429 })
+      }
+      
+      throw new Error(`GitHub API error: ${assetsResponse.status} ${assetsResponse.statusText}`)
     }
     
     const assets: GitHubAsset[] = await assetsResponse.json()
@@ -98,6 +148,13 @@ export async function GET() {
       }
     })
     
+    // Cache the successful response
+    cache = {
+      version: release.tag_name,
+      downloadLinks,
+      timestamp: Date.now()
+    }
+    
     return NextResponse.json({
       version: release.tag_name,
       downloadLinks
@@ -106,39 +163,11 @@ export async function GET() {
   } catch (error) {
     console.error('Error fetching download links:', error)
     
-    // Return fallback/placeholder links if API fails
+    // Return error response instead of placeholder links
     return NextResponse.json({
-      version: 'v2.1.0',
-      downloadLinks: {
-        mac: [
-          {
-            id: 'mac-apple-silicon',
-            label: 'Download for Apple Silicon',
-            url: 'https://placeholder-download-link.com/mac-apple-silicon',
-            enabled: true
-          },
-          {
-            id: 'mac-intel',
-            label: 'Download for Intel Mac',
-            url: 'https://placeholder-download-link.com/mac-intel',
-            enabled: true
-          }
-        ],
-        windows: [
-          {
-            id: 'windows-x64',
-            label: 'Download for Windows x64',
-            url: 'https://placeholder-download-link.com/windows-x64',
-            enabled: true
-          },
-          {
-            id: 'windows-amd64',
-            label: 'Download for Windows AMD64',
-            url: 'https://placeholder-download-link.com/windows-amd64',
-            enabled: false
-          }
-        ]
-      }
-    })
+      error: 'fetch_failed',
+      message: 'Unable to fetch the latest download links. Please try again.',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    }, { status: 500 })
   }
 }
