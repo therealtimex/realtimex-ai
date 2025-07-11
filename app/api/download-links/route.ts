@@ -85,7 +85,7 @@ export async function GET() {
             id: 'windows-arm64',
             label: 'Download for Windows ARM64',
             url: asset.browser_download_url,
-            enabled: false // Temporarily disabled as requested
+            enabled: false // Temporarily disabled
           })
         } else if (fileName.includes('-x86_64.exe')) {
           downloadLinks.windows.push({
