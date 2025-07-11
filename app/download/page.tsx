@@ -67,8 +67,8 @@ export default function DownloadPage() {
                     onClick={() => setSelectedPlatform(platform.id)}
                     className={`flex items-center space-x-2 px-6 py-3 rounded-md transition-all ${
                       selectedPlatform === platform.id
-                        ? "bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm"
-                        : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                        ? "bg-white dark:bg-dark-purple text-gray-900 dark:text-white shadow-sm"
+                        : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-dark-purple/20"
                     }`}
                   >
                     <platform.icon className="w-5 h-5" />
@@ -85,7 +85,7 @@ export default function DownloadPage() {
                   <Button
                     variant="outline"
                     size="lg"
-                    className="px-12 py-4 text-lg w-full max-w-sm border-gray-200 dark:border-gray-700 bg-transparent"
+                    className="px-12 py-4 text-lg w-full max-w-sm border-gray-200 dark:border-dark-purple bg-transparent text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-dark-purple/10"
                   >
                     <AppleIcon className="w-5 h-5 mr-3" />
                     Download for Apple Silicon
@@ -93,7 +93,7 @@ export default function DownloadPage() {
                   <Button
                     variant="outline"
                     size="lg"
-                    className="px-12 py-4 text-lg w-full max-w-sm border-gray-200 dark:border-gray-700 bg-transparent"
+                    className="px-12 py-4 text-lg w-full max-w-sm border-gray-200 dark:border-dark-purple bg-transparent text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-dark-purple/10"
                   >
                     <AppleIcon className="w-5 h-5 mr-3" />
                     Download for Intel Mac
@@ -105,7 +105,7 @@ export default function DownloadPage() {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="px-12 py-4 text-lg w-full max-w-sm border-gray-200 dark:border-gray-700 bg-transparent"
+                  className="px-12 py-4 text-lg w-full max-w-sm border-gray-200 dark:border-dark-purple bg-transparent text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-dark-purple/10"
                 >
                   <Monitor className="w-5 h-5 mr-3" />
                   Download for Windows
@@ -151,8 +151,8 @@ export default function DownloadPage() {
                 className="group border-0 shadow-sm hover:shadow-lg transition-all duration-300 bg-white dark:bg-gray-900 text-center"
               >
                 <CardContent className="p-8">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <feature.icon className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-dark-purple/20 dark:to-dark-blue/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <feature.icon className="w-8 h-8 text-blue-600 dark:text-dark-purple" />
                   </div>
                   <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">{feature.title}</h3>
                   <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{feature.description}</p>
