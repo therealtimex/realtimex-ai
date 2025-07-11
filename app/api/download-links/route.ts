@@ -51,17 +51,26 @@ export async function GET() {
     }
     
     assets.forEach(asset => {
-      const fileName = asset.name.toLowerCase()
+      const fileName = asset.name
+      const fileNameLower = fileName.toLowerCase()
       
-      if (fileName.includes('mac') || fileName.includes('darwin')) {
-        if (fileName.includes('arm64') || fileName.includes('apple-silicon')) {
+      // Only process files that start with "RealTimeX.AI-" and end with .dmg or .exe (excluding .blockmap files)
+      if (!fileName.startsWith('RealTimeX.AI-') || 
+          (!fileName.endsWith('.dmg') && !fileName.endsWith('.exe')) ||
+          fileName.includes('.blockmap')) {
+        return
+      }
+      
+      if (fileName.endsWith('.dmg')) {
+        // Mac DMG files
+        if (fileNameLower.includes('arm64') || fileNameLower.includes('apple-silicon')) {
           downloadLinks.mac.push({
             id: 'mac-apple-silicon',
             label: 'Download for Apple Silicon',
             url: asset.browser_download_url,
             enabled: true
           })
-        } else if (fileName.includes('x64') || fileName.includes('intel')) {
+        } else if (fileNameLower.includes('x64') || fileNameLower.includes('intel')) {
           downloadLinks.mac.push({
             id: 'mac-intel',
             label: 'Download for Intel Mac',
@@ -77,15 +86,16 @@ export async function GET() {
             enabled: true
           })
         }
-      } else if (fileName.includes('win') || fileName.includes('windows')) {
-        if (fileName.includes('x64')) {
+      } else if (fileName.endsWith('.exe')) {
+        // Windows EXE files
+        if (fileNameLower.includes('x64')) {
           downloadLinks.windows.push({
             id: 'windows-x64',
             label: 'Download for Windows x64',
             url: asset.browser_download_url,
             enabled: true
           })
-        } else if (fileName.includes('amd64')) {
+        } else if (fileNameLower.includes('amd64')) {
           downloadLinks.windows.push({
             id: 'windows-amd64',
             label: 'Download for Windows AMD64',
