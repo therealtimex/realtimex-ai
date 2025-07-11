@@ -16,7 +16,7 @@ export function Header() {
           <ThemeToggle />
           <Button
             size="sm"
-            className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100 animate-pulse-glow"
+            className="bg-gray-900 dark:bg-dark-purple text-white dark:text-white hover:bg-gray-800 dark:hover:bg-dark-purple/90 animate-pulse-glow"
             asChild
           >
             <Link href="/download">Download</Link>
