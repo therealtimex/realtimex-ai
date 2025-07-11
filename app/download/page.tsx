@@ -194,11 +194,6 @@ export default function DownloadPage() {
 
               {!loading && !error && selectedPlatform && downloadData?.downloadLinks[selectedPlatform as keyof PlatformDownloads] && (
                 <div className="flex flex-col items-center space-y-4">
-                  {downloadData.cached && (
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
-                      Showing cached version
-                    </p>
-                  )}
                   {downloadData.downloadLinks[selectedPlatform as keyof PlatformDownloads]
                     .filter(link => link.enabled)
                     .map((link) => (
