@@ -74,6 +74,8 @@ export function FloatingChat() {
               "mx-3 w-full bg-transparent text-gray-700 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400",
               "text-sm focus:outline-none transition-all duration-300",
               "h-8 flex items-center",
+              "focus:outline-none focus:ring-0 focus:border-0 border-0 outline-none",
+              "active:outline-none active:ring-0 active:border-0",
             )}
           />
           <button
@@ -85,6 +87,8 @@ export function FloatingChat() {
               "bg-gray-600 dark:bg-gray-500 text-white hover:opacity-70 disabled:hover:opacity-100",
               "disabled:bg-gray-400/50 dark:disabled:bg-gray-500/50 disabled:text-gray-300 dark:disabled:text-gray-400",
               "flex items-center justify-center",
+              "focus:outline-none focus:ring-0 focus:border-0 border-0 outline-none",
+              "active:outline-none active:ring-0 active:border-0",
             )}
           >
             {!message.trim() ? <ArrowUp className="w-4 h-4" /> : <Send className="w-4 h-4" />}
