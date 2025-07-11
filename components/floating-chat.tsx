@@ -85,6 +85,8 @@ export function FloatingChat() {
               "bg-gray-600 dark:bg-gray-500 text-white hover:opacity-70 disabled:hover:opacity-100",
               "disabled:bg-gray-400/50 dark:disabled:bg-gray-500/50 disabled:text-gray-300 dark:disabled:text-gray-400",
               "flex items-center justify-center",
+              "focus:outline-none focus:ring-0 focus:border-0 border-0 outline-none",
+              "active:outline-none active:ring-0 active:border-0",
             )}
           >
             {!message.trim() ? <ArrowUp className="w-4 h-4" /> : <Send className="w-4 h-4" />}
