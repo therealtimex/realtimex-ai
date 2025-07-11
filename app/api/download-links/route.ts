@@ -56,8 +56,8 @@ export async function GET() {
       
       // Only process files that start with "RealTimeX.AI-" and end with .dmg or .exe (excluding .blockmap files)
       if (!fileName.startsWith('RealTimeX.AI-') || 
-          (!fileName.endsWith('.dmg') && !fileName.endsWith('.exe')) ||
-          fileName.includes('.blockmap')) {
+          (!fileName.endsWith('.dmg') && !fileName.endsWith('.exe'))
+      ) {
         return
       }
       
