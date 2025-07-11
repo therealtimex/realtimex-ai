@@ -24,8 +24,8 @@ export default function HomePage() {
               The Future of AI Collaboration
             </Badge>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 text-gray-900 dark:text-white leading-tight animate-slide-up">
-              Find powerful <span className="text-blue-600 dark:text-blue-400">AI Agents</span> for RealTimeX
+            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-400 animate-gradient-move bg-[length:200%_200%] mb-8 leading-tight">
+              Find powerful AI Agents for RealTimeX
             </h1>
 
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed animate-slide-up animation-delay-200">
@@ -35,7 +35,7 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 animate-slide-up animation-delay-400">
               <Button
                 size="lg"
-                className="bg-gray-900 dark:bg-dark-purple text-white dark:text-white hover:bg-gray-800 dark:hover:bg-dark-blue px-8 py-3 text-lg group relative overflow-hidden animate-pulse-glow hover:animate-bounce-subtl hover:scale-105 hover:shadow-lg"
+                className="bg-gray-900 dark:bg-dark-purple text-white dark:text-white hover:bg-gray-800 dark:hover:bg-dark-purple/90 px-8 py-3 text-lg group relative overflow-hidden animate-pulse-glow hover:animate-bounce-subtl hover:scale-105 hover:shadow-lg"
                 asChild
               >
                 <Link href="/download">
@@ -43,7 +43,6 @@ export default function HomePage() {
                     Download
                     <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
                   </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-gray-800 to-gray-900 dark:from-dark-blue dark:to-dark-purple opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </Link>
               </Button>
               <Button
@@ -195,7 +194,7 @@ export default function HomePage() {
           </p>
           <Button
             size="lg"
-            className="bg-gray-900 dark:bg-dark-purple text-white dark:text-white hover:bg-gray-800 dark:hover:bg-dark-blue px-12 py-4 text-lg"
+            className="bg-gray-900 dark:bg-dark-purple text-white dark:text-white hover:bg-gray-800 dark:hover:bg-dark-purple/90 px-12 py-4 text-lg"
           >
             <Rocket className="w-5 h-5 mr-2" />
             Get Started
