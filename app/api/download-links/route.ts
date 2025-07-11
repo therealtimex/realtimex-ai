@@ -54,7 +54,7 @@ export async function GET() {
       const fileName = asset.name
       const fileNameLower = fileName.toLowerCase()
       
-      // Only process files that start with "RealTimeX.AI-" and end with .dmg or .exe (excluding .blockmap files)
+      // Only process files that start with "RealTimeX.AI-" and end with .dmg or .exe
       if (!fileName.startsWith('RealTimeX.AI-') || 
           (!fileName.endsWith('.dmg') && !fileName.endsWith('.exe'))
       ) {
@@ -62,51 +62,35 @@ export async function GET() {
       }
       
       if (fileName.endsWith('.dmg')) {
-        // Mac DMG files
-        if (fileNameLower.includes('arm64') || fileNameLower.includes('apple-silicon')) {
+        // Mac DMG files - check for arm64 or x86_64
+        if (fileName.includes('-arm64.dmg')) {
           downloadLinks.mac.push({
             id: 'mac-apple-silicon',
             label: 'Download for Apple Silicon',
             url: asset.browser_download_url,
             enabled: true
           })
-        } else if (fileNameLower.includes('x64') || fileNameLower.includes('intel')) {
+        } else if (fileName.includes('-x86_64.dmg')) {
           downloadLinks.mac.push({
             id: 'mac-intel',
             label: 'Download for Intel Mac',
             url: asset.browser_download_url,
             enabled: true
           })
-        } else {
-          // Generic Mac download if no specific architecture is detected
-          downloadLinks.mac.push({
-            id: 'mac-universal',
-            label: 'Download for macOS',
-            url: asset.browser_download_url,
-            enabled: true
-          })
         }
       } else if (fileName.endsWith('.exe')) {
-        // Windows EXE files
-        if (fileNameLower.includes('x64')) {
+        // Windows EXE files - check for arm64 or x86_64
+        if (fileName.includes('-arm64.exe')) {
           downloadLinks.windows.push({
-            id: 'windows-x64',
-            label: 'Download for Windows x64',
-            url: asset.browser_download_url,
-            enabled: true
-          })
-        } else if (fileNameLower.includes('amd64')) {
-          downloadLinks.windows.push({
-            id: 'windows-amd64',
-            label: 'Download for Windows AMD64',
+            id: 'windows-arm64',
+            label: 'Download for Windows ARM64',
             url: asset.browser_download_url,
             enabled: false // Temporarily disabled as requested
           })
-        } else {
-          // Generic Windows download if no specific architecture is detected
+        } else if (fileName.includes('-x86_64.exe')) {
           downloadLinks.windows.push({
-            id: 'windows-universal',
-            label: 'Download for Windows',
+            id: 'windows-x64',
+            label: 'Download for Windows x64',
             url: asset.browser_download_url,
             enabled: true
           })

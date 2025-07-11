@@ -136,7 +136,7 @@ export default function DownloadPage() {
             <div className="space-y-6 mb-12">
               {loading && (
                 <p className="text-gray-500 dark:text-gray-400 text-lg">
-                  Loading download options...
+                  Getting the latest version ready for you...
                 </p>
               )}
 
@@ -166,7 +166,7 @@ export default function DownloadPage() {
 
               {!loading && selectedPlatform && downloadData?.downloadLinks[selectedPlatform as keyof PlatformDownloads]?.filter(link => link.enabled).length === 0 && (
                 <p className="text-gray-500 dark:text-gray-400 text-lg">
-                  No downloads available for this platform
+                  Downloads for this platform will be available soon
                 </p>
               )}
             </div>
